@@ -4,6 +4,6 @@
 Selain BST, program ini juga mengimplementasikan:
 
 1. Queue (Antrian) → untuk playlist pemutaran lagu
-1Stack (Tumpukan) → untuk menyimpan riwayat lagu yang diputar
+2. Stack (Tumpukan) → untuk menyimpan riwayat lagu yang diputar
 
 Program ini memungkinkan pengguna untuk menambahkan lagu, mencari lagu, membuat playlist, memutar lagu, replay lagu, melihat riwayat pemutaran, hingga menghapus lagu.
