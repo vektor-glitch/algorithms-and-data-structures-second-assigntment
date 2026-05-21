@@ -79,17 +79,17 @@ lagu *tambah(lagu *node, string judul, string penyanyi, float durasi, int tahun)
     // error handling bes
     if (node == NULL)
     {
-        return buatnode(judul, penyanyi, tahun, durasi);
+        return buatnode(judul, penyanyi, durasi, tahun);
     }
 
     // ini untuk membandingkan judul untuk disisipkan ke kiri atau ke kanan bes
     if (judul < node->judul)
     {
-        node->kiri = tambah(node->kiri, judul, penyanyi, tahun, durasi);
+        node->kiri = tambah(node->kiri, judul, penyanyi, durasi, tahun);
     }
     else if (judul > node->judul)
     {
-        node->kanan = tambah(node->kanan, judul, penyanyi, tahun, durasi);
+        node->kanan = tambah(node->kanan, judul, penyanyi, durasi, tahun);
     }
     else
     {
@@ -123,10 +123,10 @@ void tambahlagu()
     {
         cout << "Durasi tidak valid! Silahkan input angka lebih dari 0: ";
         cin.clear();
-        cin.ignore(1000, '\n');
+        cin.ignore();
     }
 
-    root = tambah(root, jdl, pnyny, thn, drs);
+    root = tambah(root, jdl, pnyny, drs, thn);
     cout << "Lagu berhasil ditambahkan!" << endl;
 }
 
