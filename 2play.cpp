@@ -35,25 +35,11 @@ lagu *buatnode(string judul, string penyanyi, float durasi, int tahun)
 // yes or no
 bool yesorno(string yort)
 {
-    bool validinput = false;
-    cin.ignore(1000, '\n');
-
-    while (!validinput)
+    cout << endl;
+    while (true)
     {
         cout << "Kembali ke menu utama? (Y/T) : ";
         cin >> yort;
-
-        int panjangInput = 0;
-        for (int i = 0; yort[i] != '\0'; i++)
-        {
-            panjangInput++;
-        }
-
-        if (panjangInput == 0)
-        {
-            cout << "Input tidak boleh kosong! Silahkan coba lagi." << endl;
-            continue;
-        }
 
         if (yort == "ya" || yort == "Ya" || yort == "YA" || yort == "yA" || yort == "y" || yort == "Y")
         {
@@ -62,15 +48,14 @@ bool yesorno(string yort)
         }
         else if (yort == "tidak" || yort == "Tidak" || yort == "TIDAK" || yort == "t" || yort == "T")
         {
+            system("cls");
             return true;
         }
         else
         {
             cout << "Opsi tidak tersedia! Input hanya (ya/tidak atau y/t). Silahkan coba lagi." << endl;
-            continue;
         }
     }
-    return false;
 }
 
 // fuction buat nambah lagu ya bes
@@ -123,7 +108,7 @@ void tambahlagu()
     {
         cout << "Durasi tidak valid! Silahkan input angka lebih dari 0: ";
         cin.clear();
-        cin.ignore();
+        cin.ignore(1000, '\n');
     }
 
     root = tambah(root, jdl, pnyny, drs, thn);
@@ -174,6 +159,13 @@ void postorder(lagu *node)
 
 void tampilkanlagu()
 {
+    if (root == NULL)
+    {
+        cout << "==== TAMPILKAN LAGU 2PLAY ====" << endl;
+        cout << "Belum ada lagu! Silahkan tambahkan lagu terlebih dahulu." << endl;
+        return;
+    }
+
     int pilihan;
 
     // error handling bes
@@ -280,8 +272,7 @@ void carilagu()
         cout << "Judul      : " << hasil->judul << endl;
         cout << "Penyanyi   : " << hasil->penyanyi << endl;
         cout << "Tahun      : " << hasil->tahunterbit << endl;
-        cout << "Durasi    : " << hasil->durasi << endl;
-        ;
+        cout << "Durasi     : " << hasil->durasi << endl;
     }
     else
     {
@@ -358,20 +349,23 @@ void lihatplaylist()
 
 void putarplaylist()
 {
-    cout << "==== PUTAR PLAYLIST 2PLAY ====" << endl;
-    cout << endl;
     if (headplaylist == NULL)
     {
+        cout << "==== PUTAR PLAYLIST 2PLAY ====" << endl;
+        cout << endl;
         cout << "Belum ada lagu yang ditambahkan pada playlist! Silahkan tambah lagu terlebih dahulu." << endl;
         return;
     }
 
     int pilihan;
+    bool dihentikan = false;
 
     while (headplaylist != NULL)
     {
+        system("cls");
         while (true)
         {
+            cout << "==== PUTAR PLAYLIST 2PLAY ====" << endl;
             cout << "=====================================================================================" << endl;
             cout << "Sedang memutar:" << endl;
             cout << headplaylist->judul << " - " << headplaylist->penyanyi << endl;
@@ -417,11 +411,19 @@ void putarplaylist()
         }
         else
         {
-            system("pause");
+            dihentikan = true;
             break;
         }
     }
-    cout << "Semua lagu sudah diputar!" << endl;
+
+    if (dihentikan)
+    {
+        cout << "Memutar playlist dihentikan!" << endl;
+    }
+    else
+    {
+        cout << "Semua lagu sudah diputar!" << endl;
+    }
 }
 
 void replaylagu()
@@ -451,8 +453,8 @@ void replaylagu()
     while (true)
     {
         cout << "==== MODE REPLAY 2PLAY ====" << endl;
-        cout << "Replay berdasarkan jumlah" << endl;
-        cout << "Replay berdasarkan menit" << endl;
+        cout << "1. Replay berdasarkan jumlah" << endl;
+        cout << "2. Replay berdasarkan menit" << endl;
         cout << "Pilihan: ";
 
         if (!(cin >> pilihan))
@@ -481,7 +483,7 @@ void replaylagu()
     {
         while (true)
         {
-            cout << "Berapa kali replay?" << endl;
+            cout << "Berapa kali replay?";
             if (!(cin >> jumlahputar))
             {
                 cout << "Input harus angka! Silahkan coba lagi.\n";
@@ -655,7 +657,6 @@ int main()
 {
     // variable lokal bes
     int pilihan;
-    bool validmenu = false;
 
     // menu utama
     do
