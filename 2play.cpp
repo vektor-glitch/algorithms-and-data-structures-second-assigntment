@@ -276,7 +276,7 @@ void carilagu()
     {
         cout << "Lagu Ditemukan!" << endl;
         cout << endl;
-        cout << "==== DATA LAGU ====";
+        cout << "==== DATA LAGU ====" << endl;
         cout << "Judul      : " << hasil->judul << endl;
         cout << "Penyanyi   : " << hasil->penyanyi << endl;
         cout << "Tahun      : " << hasil->tahunterbit << endl;
